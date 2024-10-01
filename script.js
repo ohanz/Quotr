@@ -67,6 +67,11 @@ const quoteElement = document.getElementById('quote');
 const imageElement = document.getElementById('image');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
+const addQuoteButton = document.getElementById('add-quote');
+const deleteQuoteButton = document.getElementById('delete-quote');
+const quoteInput = document.getElementById('quote-input');
+const authorInput = document.getElementById('author-input');
+const imageInput = document.getElementById('image-input')
 
 // Load quotes from JSON
 // fetch('quotes.json')
@@ -136,6 +141,35 @@ fetch('quotes.json', { cache: 'no-cache' })
     nextButton.addEventListener('click', () => {
       currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
       displayQuote(quotes[currentQuoteIndex]);
+    });
+
+
+     // Add quote event listener
+     addQuoteButton.addEventListener('click', () => {
+      const newQuote = {
+        quote: quoteInput.value,
+        author: authorInput.value,
+        image: imageInput.value,
+      };
+
+      quotes.push(newQuote);
+      localStorage.setItem('quotes', JSON.stringify(quotes));
+      displayQuote(quotes[currentQuoteIndex]);
+      quoteInput.value = '';
+      authorInput.value = '';
+      imageInput.value = '';
+    });
+
+    // Delete quote event listener
+    deleteQuoteButton.addEventListener('click', () => {
+      if (quotes.length > 1) {
+        quotes.splice(currentQuoteIndex, 1);
+        localStorage.setItem('quotes', JSON.stringify(quotes));
+        currentQuoteIndex = (currentQuoteIndex - 1 + quotes.length) % quotes.length;
+        displayQuote(quotes[currentQuoteIndex]);
+      } else {
+        alert('Cannot delete last quote!');
+      }
     });
 
     // Display quote function
