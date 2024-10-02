@@ -1,62 +1,67 @@
 [
   {
+    "id": 1,
     "quote": "Believe you can and you're halfway there.",
     "author": "Theodore Roosevelt",
     "image": "image1.jpg"
   },
   {
+    "id": 2,
     "quote": "Nobody hate upcomers pass celeb wey don dey struggle.",
     "author": "Ohanz De Hyper",
     "image": "image10.jpg"
   },
   {
+    "id": 3,
     "quote": "It does not matter how slowly you go as long as you do not stop.",
     "author": "Confucius",
     "image": "image2.jpg"
   },
   {
+    "id": 4,
     "quote": "Nothing Dey Streetz. Meaning, Have low or no expections when you go outdoor.",
     "author": "Ohanz De Hyper",
     "image": "image3.jpg"
   },
   {
+    "id": 5,
     "quote": "Love sweet oh, being in love is sweeter. Buh dey use your head, dem must reciprocate",
     "author": "ODH",
     "image": "image7.jpg"
   },
   {
+    "id": 6,
     "quote": "Remember, there's no new month, it's just another day. Except if you like to conform to the standards of the world, feel free. Else, keep doing, keep hypeing.",
     "author": "ODC",
     "image": "image8.jpg"
   },
   {
+    "id": 7,
     "quote": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
     "author": "Winston Churchill",
     "image": "image4.jpg"
   },
   {
+    "id": 8,
     "quote": "Age is just a number, but no forget seh too much overload no dey good.",
     "author": "ODH",
     "image": "image6.jpg"
   },
   {
+    "id": 9,
     "quote": "",
     "author": "",
     "image": ""
   },
   {
-    "quote": "",
-    "author": "",
-    "image": ""
-  },
-  {
+    "id": 11,
     "quote": "Okay",
     "author": "shsh",
     "image": "xxhh"
   },
   {
-    "quote": "my quote",
-    "author": "sh",
-    "image": "shsh"
+    "quote": "Zoom now",
+    "author": "Me",
+    "image": "xhxh"
   }
 ]

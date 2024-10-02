@@ -122,32 +122,29 @@ app.put('/quotes', (req, res) => {
 
 // DELETE quote
 app.delete('/quotes/:id', (req, res) => {
-//   const id = (link unavailable);
-
-  fs.readFile(filePath, (err, data) => {
-    if (err && err.code === 'ENOENT') {
-      res.status(404).send({ message: 'No quotes found' });
-    } else if (err) {
-      console.error(err);
-      res.status(500).send({ message: 'Error reading quotes.json' });
-    } else {
-      try {
-        const quotes = JSON.parse(data);
-        const updatedQuotes = quotes.filter((quote, index) => index !== parseInt(id));
-        fs.writeFile(filePath, JSON.stringify(updatedQuotes, null, 2), (err) => {
-          if (err) {
-            console.error(err);
-            res.status(500).send({ message: 'Error writing quotes.json' });
-          } else {
-            res.send({ message: 'Quote deleted successfully' });
-          }
-        });
-      } catch (err) {
-        console.error('JSON parse error:', err);
+    const quoteId = req.params.id;
+  
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        try {
+          const quotes = JSON.parse(data);
+          const updatedQuotes = quotes.filter((quote, index) => index !== parseInt(quoteId));
+  
+          fs.writeFile(filePath, JSON.stringify(updatedQuotes, null, 2), (err) => {
+            if (err) {
+              console.error(err);
+            } else {
+              res.send({ message: 'Quote deleted successfully' });
+            }
+          });
+        } catch (err) {
+          console.error('JSON parse error:', err);
+        }
       }
-    }
+    });
   });
-});
 
 // Root route
 app.get('/', (req, res) => {
@@ -156,5 +153,5 @@ app.get('/', (req, res) => {
 
 // Start server
 app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+  console.log(`Ohanz Server started on port ${port}`);
 });

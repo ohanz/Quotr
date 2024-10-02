@@ -176,6 +176,7 @@ fetch('quotes.json', { cache: 'no-cache' })
     function displayQuote(quote) {
       quoteElement.textContent = `"${quote.quote}" - ${quote.author}`;
       imageElement.src = `images/${quote.image}`;
+      quoteElement.dataset.quoteId = quote.id; // Add quote ID
     }
 
     // Show random quote as alert after 10 minutes
@@ -200,6 +201,57 @@ fetch('quotes.json', { cache: 'no-cache' })
         })
         .catch(error => console.error(error));
       }
+
+    
+  
+      // Delete quote function
+    // function deleteQuote(quoteId) {
+    //   fetch(`/quotes/${quoteId}`, {
+    //     method: 'DELETE'
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     // Update UI: remove deleted quote
+    //     quotes.splice(currentQuoteIndex, 1);
+    //     currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+    //     displayQuote(quotes[currentQuoteIndex]);
+    //   })
+    //   .catch(error => console.error('Error deleting quote:', error));
+    // }
+
+    // Delete quote function
+ // Delete quote function
+ function deleteQuote() {
+  const quoteElement = document.getElementById('quote');
+  const quoteId = quoteElement.dataset.quoteId; // Retrieve quote ID
+  fetch(`/quotes/${quoteId}`, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log(`Quote ${quoteId} deleted successfully`);
+      // Update UI: remove deleted quote
+      quotes.splice(currentQuoteIndex, 1);
+      currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+      displayQuote(quotes[currentQuoteIndex]);
+    } else {
+      console.error(`Error deleting quote ${quoteId}: ${response.statusText}`);
+    }
+  })
+  .catch(error => console.error('Error deleting quote:', error));
+}
+
+         // Delete quote button event listener
+    const deleteButton = document.getElementById('delete-quote');
+    deleteButton.addEventListener('click', () => {
+      // const quoteId = document.getElementById('quote').dataset.quoteId;
+      // deleteQuote(quoteId);
+      const quoteElement = document.getElementById('quote');
+      const quoteId = quoteElement.dataset.quoteId;
+      console.log(`Deleting quote ID: ${quoteId}`);
+      deleteQuote(quoteId)
+    });
 
         // Add event listener for adding new quote
     const addQuoteButton = document.getElementById('add-quote');
